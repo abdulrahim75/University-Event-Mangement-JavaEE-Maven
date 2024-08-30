@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Faculty Login</title>
+	<h:outputStylesheet library="css" name="formstyle.css" />
+</h:head>
+<body>
+	<ui:include src="/mainnavbar.xhtml" />
+	<div class="login-page">
+		<h3 class="form-title">
+			<u>Faculty Login</u>
+		</h3>
+		<div class="form-container">
+			<h:form>
+				<h:panelGrid columns="3" cellpadding="5" styleClass="form-grid">
+					<h:outputLabel for="username" value="Username"
+						styleClass="form-label" />
+					<h:inputText id="username" styleClass="form-input"
+						validatorMessage="Username length must be in between 3 and 30"
+						value="#{facultybean.id}">
+						<f:validateLength minimum="3" maximum="30" />
+					</h:inputText>
+					<h:message for="username" styleClass="error-message" />
+
+					<h:outputLabel for="password" value="Password"
+						styleClass="form-label" />
+					<h:inputSecret id="password" styleClass="form-input"
+						validatorMessage="Password length must be in between 3 and 30"
+						value="#{facultybean.password}">
+						<f:validateLength minimum="3" maximum="30" />
+					</h:inputSecret>
+					<h:message for="password" styleClass="error-message" />
+
+					<f:facet name="footer">
+						<h:panelGroup style="display:flex; text-align:center">
+							<h:commandButton id="login" value="Login"
+								styleClass="form-button"
+								action="#{facultybean.validateFacultyLogin()}" />
+							&nbsp;&nbsp;
+                    		<h:commandButton id="clear" value="Clear"
+								styleClass="form-button" type="reset" />
+						</h:panelGroup>
+					</f:facet>
+				</h:panelGrid>
+			</h:form>
+			<p>NOTE : Username is your Faculty ID.</p>
+		</div>
+	</div>
+</body>
+</html>

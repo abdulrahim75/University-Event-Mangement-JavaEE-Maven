@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Faculty Registration</title>
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		target="head" />
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" />
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" />
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" />
+</h:head>
+<h:outputStylesheet library="css" name="registerform.css" />
+<body>
+	<ui:include src="/adminnavbar.xhtml" />
+	<div class="container mt-3">
+        <h3 class="text-center"><u>Faculty Registration</u></h3>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h:form>
+                            <div class="form-group">
+                                <h:outputLabel value="Enter Name" class="font-weight-bold"/>
+                                <h:inputText id="name" required="true" requiredMessage="Enter Name" value="#{facultybean.name}" class="form-control"/>
+                                <h:message for="name" class="text-danger" />
+                            </div>
+
+                            <div class="form-group">
+                                <h:outputLabel for="gender" value="Select Gender" class="font-weight-bold"/>
+                                <div>
+                                    <h:selectOneRadio id="gender" required="true" requiredMessage="Select Gender" value="#{facultybean.gender}" class="form-check form-check-inline">
+                                        <f:selectItem itemLabel="Male" itemValue="MALE" />
+                                        <f:selectItem itemLabel="Female" itemValue="FEMALE" />
+                                        <f:selectItem itemLabel="Others" itemValue="OTHERS" />
+                                    </h:selectOneRadio>
+                                </div>
+                                <h:message for="gender" class="text-danger" />
+                            </div>
+
+                            <div class="form-group">
+                                <h:outputLabel for="department" value="Select Department" class="font-weight-bold"/>
+                                <h:selectOneMenu id="department" required="true" requiredMessage="Select Department" value="#{facultybean.department}" class="form-control">
+                                    <f:selectItem itemLabel="--Select--" itemValue="" />
+                                    <f:selectItem itemLabel="CSE" itemValue="CSE" />
+                                    <f:selectItem itemLabel="ECE" itemValue="ECE" />
+                                    <f:selectItem itemLabel="EEE" itemValue="EEE" />
+                                    <f:selectItem itemLabel="MECH" itemValue="MECH" />
+                                </h:selectOneMenu>
+                                <h:message for="department" class="text-danger" />
+                            </div>
+
+                            <div class="form-group">
+                                <h:outputLabel for="dob" value="Enter Date Of Birth" class="font-weight-bold"/>
+                                <h:inputText id="dob" required="true" requiredMessage="Enter Date Of Birth" value="#{facultybean.dob}" class="form-control datepicker" />
+                                <h:message for="dob" class="text-danger" />
+                            </div>
+
+                            <div class="form-group">
+                                <h:outputLabel for="email" value="Enter Email" class="font-weight-bold"/>
+                                <h:inputText id="email" required="true" requiredMessage="Enter Email" value="#{facultybean.email}" validatorMessage="Email Must be formatted properly." class="form-control">
+                                <f:validateRegex pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"></f:validateRegex>
+                                </h:inputText>
+                                <h:message for="email" class="text-danger" />
+                            </div>
+
+                            <div class="form-group">
+                                <h:outputLabel for="contact" value="Enter Contact" class="font-weight-bold"/>
+                                <h:inputText id="contact" required="true" requiredMessage="Enter Contact" validatorMessage="Contact Number must contains 10 digits only" value="#{facultybean.contact}" class="form-control">
+                                    <f:validateRegex pattern="[6789][0-9]{9}"></f:validateRegex>
+                                </h:inputText>
+                                <h:message for="contact" class="text-danger" />
+                            </div>
+
+                            <div class="form-group d-flex justify-content-center">
+                                <h:commandButton id="add" value="ADD FACULTY" action="#{facultybean.addFaculty()}" class="btn btn-success mr-2"/>
+                                <h:commandButton id="reset" value="CLEAR" type="reset" class="btn btn-info mr-2"/>
+                                <h:message for="add" />
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

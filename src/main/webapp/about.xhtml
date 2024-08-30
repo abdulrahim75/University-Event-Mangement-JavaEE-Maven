@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+<title>About</title>
+</h:head> 
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 80px;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin-top:30%;
+    animation: fadeIn 1.5s ease-in-out;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+}
+
+/* Add margin-top to account for the navbar height */
+body {
+    margin-top: 60px; /* Adjust based on your navbar height */
+}
+
+h1, h2, h3 {
+    color: #0056b3;
+}
+
+ul li {
+    list-style: none;
+    padding-left: 20px;
+    position: relative;
+}
+
+ul li::before {
+    content: "•";
+    color: #0056b3;
+    position: absolute;
+    left: 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    animation: slideInLeft 1s ease-in-out;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+h2 {
+    animation: slideInRight 1s ease-in-out;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+p, ul {
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+</style>
+<body> 
+    <ui:include src="/mainnavbar.xhtml" />
+    <div class="container">
+        <h1 align="center" >University Event Management System</h1>
+        <main>
+            <section>
+                <h2>Project Overview</h2>
+                <p>The University Event Management System is a comprehensive application developed using Java EE with JPA (Java Persistence API), JSF (JavaServer Faces), and JSP (JavaServer Pages). The system is designed to facilitate the registration and management of various events organized by university departments. It allows students to register for events, administrators to manage events, and generate final winners. Additionally, the system provides functionalities for downloading certificates and generating client profiles.</p>
+            </section>
+            <section>
+                <h2>Key Technologies</h2>
+                <ul>
+                    <li><strong>Java EE</strong>: The core framework used for developing the application, providing enterprise-level capabilities.</li>
+                    <li><strong>JPA (Java Persistence API)</strong>: Used for managing and persisting data between Java objects and a relational database.</li>
+                    <li><strong>JSF (JavaServer Faces)</strong>: A framework for building component-based user interfaces for web applications.</li>
+                    <li><strong>JSP (JavaServer Pages)</strong>: Used for creating dynamically generated web pages based on HTML, XML, or other document types.</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Roles and Responsibilities</h2>
+                <h3>Students</h3>
+                <ul>
+                    <li><strong>Event Registration</strong>: Students can browse and register for various events organized by different university departments.</li>
+                    <li><strong>Profile Management</strong>: Students can create and manage their profiles within the system.</li>
+                    <li><strong>Certificate Download</strong>: After participating in an event, students can download their participation or winning certificates from the system.</li>
+                </ul>
+                <h3>Event Organizers (Department)</h3>
+                <ul>
+                    <li><strong>Event Creation and Management</strong>: Organizers can create new events, specify details such as date, time, and location, and manage participant lists.</li>
+                    <li><strong>Winner Selection</strong>: After the event concludes, organizers can select and input the winners into the system.</li>
+                    <li><strong>Communication</strong>: Organizers can communicate event details and updates to registered students.</li>
+                </ul>
+                <h3>Administrator</h3>
+                <ul>
+                    <li><strong>System Management</strong>: Administrators oversee the entire system, ensuring smooth operation and addressing any technical issues.</li>
+                    <li><strong>Event Oversight</strong>: Administrators have access to all events and can monitor their progress and participation levels.</li>
+                    <li><strong>Winner Verification and Certification</strong>: Administrators verify the winners selected by event organizers and ensure the proper generation and distribution of certificates.</li>
+                    <li><strong>Client Profile Generation</strong>: Administrators can generate detailed profiles for clients, including their event participation history and achievements.</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Features</h2>
+                <ul>
+                    <li><strong>User Authentication</strong>: Secure login and authentication for students, event organizers, and administrators.</li>
+                    <li><strong>Event Dashboard</strong>: A comprehensive dashboard providing an overview of upcoming, ongoing, and past events.</li>
+                    <li><strong>Notification System</strong>: Automated notifications and reminders for event registrations, updates, and results.</li>
+                    <li><strong>Certificate Generation</strong>: Automatic generation of certificates for participants and winners, available for download.</li>
+                    <li><strong>Reporting and Analytics</strong>: Detailed reports and analytics on event participation, performance, and outcomes.</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Team Details:</h2>
+                <ul>
+                    <li><strong>The Project is designed and developed by K.Sanjay and P.Harshavardana Reddy under the guidance of our subject mentor Mr J.Surya Kiran.</strong></li>
+                    
+                </ul>
+            </section>
+        </main>
+    </div>
+</body> 
+</html>

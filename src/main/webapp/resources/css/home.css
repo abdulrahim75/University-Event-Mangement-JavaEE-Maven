@@ -1,0 +1,45 @@
+body {
+      background-image: url("./images/Designer.jpeg");
+      background-size: cover;
+      background-position: fixed;
+      background-repeat: no-repeat;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .content {
+      animation: float 6s ease-in-out infinite;
+    }
+
+   
+    h1 {
+      text-align: center;
+      color: white;
+      margin-top: 150px; /* Adjusted for fixed header */
+      font-size: 4em;
+      animation: fadeIn 3s;
+    }
+
+    h1 span {
+      display: block;
+      font-size: 0.5em;
+      color: #f1c40f;
+      margin-top: 10px;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }

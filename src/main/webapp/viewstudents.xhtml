@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:h="http://java.sun.com/jsf/html"
+>
+  <h:head>
+    <title>View Students</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+
+      .styled-table {
+        width: 80%;
+        border-collapse: collapse;
+        margin: 20px auto;
+        background-color: white;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .styled-table th,
+      .styled-table td {
+        padding: 12px 15px;
+        text-align: center;
+      }
+
+      .styled-table thead {
+        background-color: lightblue;
+        color: #333;
+      }
+
+      .styled-table tbody tr {
+        transition: background-color 0.3s;
+      }
+
+      .styled-table tbody tr:hover {
+        background-color: #f2f2f2;
+      }
+
+      .delete-link {
+        color: red;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .delete-link:hover {
+        color: darkred;
+      }
+
+      .search-bar {
+        margin: 20px;
+        text-align: center;
+      }
+
+      .search-bar input[type="text"] {
+        padding: 10px;
+        width: 300px;
+        font-size: 1em;
+        border: 1px solid #007bff;
+        border-radius: 5px;
+        outline: none;
+      }
+
+      .search-bar input[type="text"]:focus {
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+      }
+    </style>
+    <h:outputScript library="js" name="tablesearch.js" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </h:head>
+
+  <body>
+    <ui:include src="/adminnavbar.xhtml" />
+    <h3 align="center">View All Students</h3>
+    <div align="center">
+      <div align="center" class="search-bar">
+        <input
+          type="text"
+          id="searchInput"
+          onkeyup="filterTable()"
+          placeholder="Search for students.."
+        />
+        
+        <div class="mt-2">
+        	<a href="downloadstudents" class=" btn btn-success" ><i class="fas fa-download"></i>&nbsp;Download as CSV</a>
+        </div>
+        
+      </div>
+      <h:panelGroup rendered="#{empty adminbean.getStudentList()}">
+        <h3>No students found.</h3>
+      </h:panelGroup>
+      <h:panelGroup rendered="#{not empty adminbean.getStudentList()}">
+        <h:dataTable
+          id="dataTable"
+          value="#{adminbean.getStudentList()}"
+          var="student"
+          border="1"
+          styleClass="styled-table"
+        >
+          <h:column>
+            <f:facet name="header">ID</f:facet>
+            #{student.id}
+          </h:column>
+
+          <h:column>
+            <f:facet name="header">Name</f:facet>
+            #{student.name}
+          </h:column>
+
+          <h:column>
+            <f:facet name="header">Gender</f:facet>
+            #{student.gender}
+          </h:column>
+
+          <h:column>
+            <f:facet name="header">Date Of Birth</f:facet>
+            #{student.dob}
+          </h:column>
+
+          <h:column>
+            <f:facet name="header">Department</f:facet>
+            #{student.department}
+          </h:column>
+
+          <h:column>
+            <f:facet name="header">Email</f:facet>
+            #{student.email}
+          </h:column>
+
+          <h:column>
+            <f:facet name="header">Contact</f:facet>
+            #{student.contact}
+          </h:column>
+
+          <h:column>
+            <f:facet name="header">Actions</f:facet>
+            <h:form>
+              <h:commandLink value="Update" action="adminupdatestudent.jsp" styleClass="delete-link">
+              	<f:param name="sid" value="#{student.id}" />
+              </h:commandLink>
+              &nbsp;&nbsp;
+              <h:commandLink value="View" action="adminviewstudent.jsp" styleClass="delete-link">
+              	<f:param name="sid" value="#{student.id}" />
+              </h:commandLink>
+            </h:form>
+          </h:column>
+           <h:column id="noStudentsRow" rendered="false">
+		    <f:facet name="header">No students found</f:facet>
+		    <h:outputText value="No students found." />
+		  </h:column>
+        </h:dataTable>
+      </h:panelGroup>
+    </div>
+  </body>
+</html>

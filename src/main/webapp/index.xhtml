@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+<title>Home</title>
+</h:head> 
+<h:outputStylesheet library="css" name="home.css" />
+<style>
+body {
+      background-image: url("./images/Designer.jpeg");
+      background-size: cover;
+      background-position: fixed;
+      background-repeat: no-repeat;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .content {
+      animation: float 6s ease-in-out infinite;
+    }
+
+   
+    h1 {
+      text-align: center;
+      color: navy;
+      margin-top: 150px; /* Adjusted for fixed header */
+      font-size: 4em;
+      animation: fadeIn 3s;
+    }
+
+    h1 span {
+      display: block;
+      font-size: 0.5em;
+      color: #f1c40f;
+      margin-top: 10px;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+</style>
+<body> 
+<ui:include src="/mainnavbar.xhtml" />
+    <div class="content">
+      <h1>
+        University Event Management
+        <span>Organize, Participate, and Celebrate!</span>
+      </h1>
+    </div>
+</body> 
+</html>

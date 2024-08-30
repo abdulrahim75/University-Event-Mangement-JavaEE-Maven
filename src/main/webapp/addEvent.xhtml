@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Event Registration</title>
+    <script type="text/javascript"
+            src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript"
+            src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet"
+          href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+    <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script type="text/javascript"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <h:outputScript library="js" name="timepicker.js"/>
+</h:head>
+<body>
+<h:outputStylesheet library="css" name="registerform.css"/>
+<ui:include src="/adminnavbar.xhtml"/>
+<div class="container mt-3">
+    <h3 class="text-center">
+        <u>Event Registration</u>
+    </h3>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h:form id="eventForm">
+                        <div class="form-group">
+                            <h:outputLabel for="name" value="Event Name"
+                                           class="font-weight-bold"/>
+                            <h:inputText id="name" required="true"
+                                         requiredMessage="Enter Event Name" value="#{eventbean.ename}"
+                                         class="form-control"/>
+                            <h:message for="name" class="text-danger"/>
+                        </div>
+
+                        <div class="form-group">
+                            <h:outputLabel for="department" value="Event Department"
+                                           class="font-weight-bold"/>
+                            <h:selectOneMenu id="department" required="true"
+                                             requiredMessage="Select Department"
+                                             value="#{eventbean.edepartment}" class="form-control">
+                                <f:selectItem itemLabel="--Select--" itemValue=""/>
+                                <f:selectItem itemLabel="CSE" itemValue="CSE"/>
+                                <f:selectItem itemLabel="ECE" itemValue="ECE"/>
+                                <f:selectItem itemLabel="EEE" itemValue="EEE"/>
+                                <f:selectItem itemLabel="MECH" itemValue="MECH"/>
+                            </h:selectOneMenu>
+                            <h:message for="department" class="text-danger"/>
+                        </div>
+
+                        <div class="form-group">
+                            <h:outputLabel for="domain" value="Event Domain"
+                                           class="font-weight-bold"/>
+                            <h:selectOneMenu id="domain" required="true"
+                                             requiredMessage="Select Domain" value="#{eventbean.edomain}"
+                                             class="form-control">
+                                <f:selectItem itemLabel="--Select--" itemValue=""/>
+                                <f:selectItem itemLabel="Technical" itemValue="TECHNICAL"/>
+                                <f:selectItem itemLabel="Cultural" itemValue="CULTURAL"/>
+                                <f:selectItem itemLabel="Liberal Arts" itemValue="LIBERAL ARTS"/>
+                                <f:selectItem itemLabel="Innovation and Incubation"
+                                              itemValue="INNOVATION AND INCUBATION"/>
+                            </h:selectOneMenu>
+                            <h:message for="domain" class="text-danger"/>
+                        </div>
+
+                        <div class="form-group">
+                            <h:outputLabel for="date" value="Event Date"
+                                           class="font-weight-bold"/>
+                            <h:inputText id="date" required="true"
+                                         requiredMessage="Select Event Date" value="#{eventbean.edate}"
+                                         class="form-control datepicker"/>
+                            <h:message for="date" class="text-danger"/>
+                        </div>
+
+                        <div class="form-group">
+                            <h:outputLabel for="time" value="Event Start Time"
+                                           class="font-weight-bold"/>
+                            <h:inputText id="time" required="true"
+                                         requiredMessage="Select Event Time"
+                                         value="#{eventbean.starttime}" class="form-control" validatorMessage="Time Must be in Format HH:MM AM/PM">
+                                         <f:validateRegex for="time" pattern="\b(0[1-9]|1[0-2]):[0-5][0-9] [AP]M\b"></f:validateRegex>
+                                         </h:inputText>
+                            <h:message for="time" class="text-danger"/>
+                        </div>
+
+                        <div class="form-group">
+                            <h:outputLabel for="facultyid" value="Enter Faculty ID"
+                                           class="font-weight-bold"/>
+                            <h:selectOneMenu id="facultyid" required="true"
+                                             requiredMessage="Select Faculty" value="#{eventbean.facultyid}"
+                                             class="form-control">
+                                <f:selectItem itemLabel="--Select--" itemValue=""/>
+                                <f:selectItems value="#{adminbean.getFacultyList()}"
+                                               var="faculty" itemValue="#{faculty.id}"
+                                               itemLabel="#{faculty.id} - #{faculty.name} - #{faculty.department}"/>
+                            </h:selectOneMenu>
+                            <h:message for="facultyid" class="text-danger"/>
+                        </div>
+
+                        <div class="form-group">
+                            <h:outputLabel for="venue" value="Event Venue"
+                                           class="font-weight-bold"/>
+                            <h:inputText id="venue" required="true"
+                                         requiredMessage="Enter Venue" value="#{eventbean.evenue}"
+                                         class="form-control"/>
+                            <h:message for="venue" class="text-danger"/>
+                        </div>
+
+                        <div class="form-group">
+                            <h:outputLabel for="participants" value="No of Participants"
+                                           class="font-weight-bold"/>
+                            <h:inputText id="participants" required="true"
+                                         requiredMessage="Enter No of Participants"
+                                         value="#{eventbean.participants}" class="form-control"/>
+                            <h:message for="participants" class="text-danger"/>
+                        </div>
+
+                        <div class="form-group d-flex justify-content-center">
+                            <h:commandButton id="add" value="ADD EVENT" action="#{eventbean.addEvent()}"
+                                             class="btn btn-success mr-2"/>
+                            <h:commandButton id="reset" value="CLEAR" type="reset"
+                                             class="btn btn-info mr-2"/>
+                            <h:message for="add"/>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+<script type="text/javascript"  src="https://code.jquery.com/jquery-3.6.0.min.js" />
+<script type="text/javascript"  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" />
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+<h:outputScript library="js" name="datepicker.js" />
+</h:head>
+
+<h:outputStylesheet library="css" name="adminnavcss.css" />
+<style>
+body {
+      background-image: url("./images/Designer.jpeg");
+      background-size: cover;
+      background-position: fixed;
+      background-repeat: no-repeat;
+      margin: 0;
+      font-family: Arial, sans-serif;
+}
+</style>
+<body> 
+<h:form styleClass="nav">
+      <h:commandLink action="facultyhome.jsp" value="Home" styleClass="nav-link"/>&nbsp;&nbsp;
+      <h:commandLink action="facultyaddevent.jsp" value="Add Event" styleClass="nav-link"/>&nbsp;&nbsp;
+      <h:commandLink action="facultylogout.jsp" value="logout" styleClass="nav-link"/>&nbsp;&nbsp;
+</h:form>
+</body> 
+</html>

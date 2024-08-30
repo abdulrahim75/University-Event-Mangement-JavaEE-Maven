@@ -1,0 +1,119 @@
+/* style.css */
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.form-title {
+  text-align: center;
+  color: black;
+  font-size: 2em;
+  margin-bottom: 20px;
+  animation: fadeInDown 1s ease-in-out;
+}
+
+.form-container {
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  width: 400px;
+  animation: zoomIn 0.6s ease-in-out;
+}
+
+.form-grid {
+  width: 100%;
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  color: #333;
+}
+
+.form-input {
+  width: 80%;
+  padding: 15px 20px 15px 50px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: #f9f9f9;
+  background-repeat: no-repeat;
+  background-position: 15px center;
+  background-size: 20px 20px;
+  font-size: medium;
+}
+
+.form-input:focus {
+  border-color: #2575fc;
+  box-shadow: 0 0 10px rgba(37, 117, 252, 0.2);
+  outline: none;
+  background-color: #fff;
+}
+
+
+.form-button {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  border: none;
+  border-radius: 30px;
+  color: #fff;
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.form-button:hover {
+  background: linear-gradient(to right, #5c0dbc, #1f6df2);
+  transform: translateY(-2px);
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

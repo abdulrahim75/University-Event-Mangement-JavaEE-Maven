@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+  <h:head>
+    <title>View Events</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+
+      .styled-table {
+        width: 90%;
+        border-collapse: collapse;
+        margin: 20px auto;
+        background-color: white;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .styled-table th,
+      .styled-table td {
+        padding: 12px 15px;
+        text-align: center;
+      }
+
+      .styled-table thead {
+        background-color: lightblue;
+        color: #333;
+      }
+
+      .styled-table tbody tr {
+        transition: background-color 0.3s;
+      }
+
+      .styled-table tbody tr:hover {
+        background-color: #f2f2f2;
+      }
+
+      .delete-link {
+        color: red;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .delete-link:hover {
+        color: darkred;
+      }
+
+      .search-bar {
+        margin: 20px;
+        text-align: center;
+      }
+
+      .search-bar input[type="text"] {
+        padding: 10px;
+        width: 300px;
+        font-size: 1em;
+        border: 1px solid #007bff;
+        border-radius: 5px;
+        outline: none;
+      }
+
+      .search-bar input[type="text"]:focus {
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+      }
+    </style>
+    <h:outputScript library="js" name="tablesearch.js" />
+    <script>
+      function filterTable() {
+        const searchInput = document.getElementById('searchInput').value.toLowerCase();
+        const rows = document.querySelectorAll('#dataTable tbody tr');
+        rows.forEach(row => {
+          const cells = row.querySelectorAll('td');
+          const match = [...cells].some(cell => cell.textContent.toLowerCase().includes(searchInput));
+          row.style.display = match ? '' : 'none';
+        });
+      }
+
+      /* function parseDate(dateStr) {
+        const parts = dateStr.split('/');
+        return new Date(parts[2], parts[1] - 1, parts[0]);
+      }
+
+      function checkEventDates() {
+        const rows = document.querySelectorAll('#dataTable tbody tr');
+        const currentDate = new Date();
+
+        rows.forEach(row => {
+          const eventDateStr = row.querySelector('.event-date').textContent.trim();
+          const eventDate = parseDate(eventDateStr);
+          const updateLink = row.querySelector('.update-link');
+          if (currentDate > eventDate) {
+            updateLink.style.display = 'none';
+          }
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', checkEventDates); */
+    </script>
+  </h:head>
+  <body>
+    <ui:include src="/adminnavbar.xhtml" />
+    <h3 align="center">View All Events</h3>
+    <div align="center">
+      <div align="center" class="search-bar">
+        <input
+          type="text"
+          id="searchInput"
+          onkeyup="filterTable()"
+          placeholder="Search for events.."
+        />
+      </div>
+      <div class="mt-2">
+        	<a href="downloadevents" class=" btn btn-success" ><i class="fas fa-download"></i>&nbsp;Download as CSV</a>
+        </div>
+      <h:dataTable
+        id="dataTable"
+        value="#{eventbean.getEventList()}"
+        var="event"
+        border="1"
+        styleClass="styled-table"
+      >
+        <h:column>
+          <f:facet name="header">Event ID</f:facet>
+          #{event.eid}
+        </h:column>
+
+        <h:column>
+          <f:facet name="header">Event Name</f:facet>
+          #{event.ename}
+        </h:column>
+
+        <h:column>
+          <f:facet name="header">Event Department</f:facet>
+          #{event.edepartment}
+        </h:column>
+        
+        <h:column>
+          <f:facet name="header">Event Domain</f:facet>
+          #{event.edomain}
+        </h:column>
+        
+        <h:column>
+          <f:facet name="header">Event Venue</f:facet>
+          #{event.evenue}
+        </h:column>
+
+        <h:column>
+          <f:facet name="header">Event Date</f:facet>
+          <span class="event-date">#{event.edate}</span>
+        </h:column>
+        
+        <h:column>
+          <f:facet name="header">Event Capacity</f:facet>
+          #{event.participants}
+        </h:column>
+        
+        <h:column>
+          <f:facet name="header">Event Availability</f:facet>
+          #{event.availability}
+        </h:column>
+        
+        <h:column>
+          <f:facet name="header">Event Status</f:facet>
+          #{event.status}
+        </h:column>
+
+        <h:column>
+          <f:facet name="header">Actions</f:facet>
+          <h:form>
+
+            <h:commandLink value="View Event" action="adminviewevent.jsp" styleClass="delete-link">
+              <f:param name="eid" value="#{event.eid}" />
+            </h:commandLink>
+            <br></br>
+            <h:commandLink value="Update" action="adminupdateevent.jsp" styleClass="update-link delete-link">
+              <f:param name="id" value="#{event.eid}" />
+            </h:commandLink>
+            <br></br>
+            <h:commandLink value="View Registered Students" action="adminviewregisteredstudents.jsp" styleClass="delete-link">
+              <f:param name="id" value="#{event.eid}" />
+            </h:commandLink>
+            <br></br>
+            
+            <h:panelGroup rendered="#{adminbean.cancelStatus(event.eid)}">
+            <h:commandButton class="btn btn-danger mt-1" action="#{adminbean.cancelEvent(event.eid)}" value="Cancel Event" />
+        	</h:panelGroup>
+			<br></br>
+            <h:commandButton class="btn btn-danger mt-1" action="#{adminbean.deleteEvent(event.eid)}" value="Delete Event" />
+            
+			<h:panelGroup rendered="#{!adminbean.openStatus(event.eid) and !adminbean.isCancelled(event.eid)}">
+			<h:commandButton class="btn btn-success mt-1" action="#{adminbean.openEventRegistration(event.eid)}" value="OPEN REGISTRATION" />
+			</h:panelGroup>
+			
+			<h:panelGroup rendered="#{adminbean.openStatus(event.eid) and !adminbean.isCancelled(event.eid)}">
+			<h:commandButton class="btn btn-danger mt-1" action="#{adminbean.closeEventRegistration(event.eid)}" value="CLOSE REGISTRATION" />
+			</h:panelGroup>
+			
+          </h:form>
+        </h:column>
+      </h:dataTable>
+    </div>
+  </body>
+</html>

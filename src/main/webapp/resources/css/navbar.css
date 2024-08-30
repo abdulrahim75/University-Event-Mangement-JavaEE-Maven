@@ -1,0 +1,78 @@
+/* Navbar container */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.nav {
+    background-color: rgba(0, 0, 0, 0.85);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    text-align: center;
+    padding: 15px;
+    margin: 20px;
+    position: fixed;
+    width:95%;
+    top:0;
+}
+
+/* Navbar links */
+.nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 14px 20px;
+    display: inline-block;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* Hover effect for links */
+.nav-link:hover {
+    background-color: #575757;
+    transform: scale(1.05);
+}
+
+/* Active link styling */
+.nav-link.active {
+    background-color: #4CAF50;
+}
+
+/* Margin between links */
+.nav-link + .nav-link {
+    margin-left: 15px;
+}
+
+/* Footer styling */
+.footer {
+    text-align: center;
+    padding: 5px;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    border-radius: 2%;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .nav-link {
+        display: block;
+        padding: 10px;
+        margin: 5px 0;
+    }
+    
+    .nav-link + .nav-link {
+        margin-left: 0;
+    }
+}

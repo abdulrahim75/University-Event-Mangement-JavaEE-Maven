@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head></h:head>
+<h:outputStylesheet library="css" name="navbar.css" />
+<style>
+body {
+    background-image: url("./images/Designer.jpeg");
+    background-size: cover;
+    background-position: fixed;
+    background-repeat: no-repeat;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+#j_idt24:username {
+  background-image: url("icons/user-icon.png"); /* Ensure the path is correct */
+}
+
+#j_idt24:password{
+  background-image: url("icons/password-icon.png"); /* Ensure the path is correct */
+}
+</style>
+<body>
+    <h:form styleClass="nav">
+        <h:commandLink action="index" value="Home" styleClass="nav-link"/>&nbsp;&nbsp;
+        <h:commandLink action="about" value="About" styleClass="nav-link"/>&nbsp;&nbsp;
+        <h:commandLink action="adminlogin" value="Admin Login" styleClass="nav-link"/>&nbsp;&nbsp;
+        <h:commandLink action="facultylogin" value="Faculty Login" styleClass="nav-link"/>&nbsp;&nbsp;
+        <h:commandLink action="studentlogin" value="Student Login" styleClass="nav-link"/>&nbsp;&nbsp;
+    </h:form>
+</body>
+</html>
